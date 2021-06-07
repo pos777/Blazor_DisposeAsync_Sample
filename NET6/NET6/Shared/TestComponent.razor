@@ -1,0 +1,15 @@
+﻿@implements IAsyncDisposable
+@inject IJSRuntime JS;
+
+<h3>TestComponent</h3>
+
+@code {
+    async ValueTask IAsyncDisposable.DisposeAsync()
+    {
+        try
+        {
+            await JS.InvokeVoidAsync("console.log", "TestComponent.DisposeAsync");
+        }
+        catch (TaskCanceledException) { }
+    }
+}
